@@ -616,7 +616,7 @@
     </div>
   </div>
   <div class="np-body">
-    <div class="np-hint"><b>Feedback mode is on.</b> Click anything up top — the headline, the nav, a button — and leave a comment, just like the real thing. Nothing leaves your browser.</div>
+    <div class="np-hint"><b>Feedback mode is on.</b> Click anything in the hero — the headline, the subtext, a button — and leave a comment, just like the real thing. Nothing leaves your browser.</div>
     <div class="np-compose">
       <div class="np-sel" id="npSel">element</div>
       <textarea class="np-field" id="npField" rows="2" placeholder="Say what should change…"></textarea>
@@ -650,8 +650,8 @@
 
     const inPanel = (el) => panel.contains(el) || el === hl;
     const isControl = (el) => el.closest && el.closest("a, button, input, textarea, label, select, [data-copy]");
-    // demo is confined to the top of the page — the header nav bar and the hero
-    const inDemoZone = (el) => el.closest && el.closest("header, section.hero");
+    // demo is confined to the hero section only
+    const inDemoZone = (el) => el.closest && el.closest("section.hero");
     function selectorFor(el) {
       if (el.id) return "#" + el.id;
       let s = el.tagName.toLowerCase();
