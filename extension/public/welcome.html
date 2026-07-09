@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Welcome to nitpic</title>
+  <style>
+    /* Light: hero-orange page, white cards. Dark: warm-grey page, orange cards
+       with dark ink. Auto-switches with the system preference. */
+    :root {
+      color-scheme: light dark;
+      --accent: #91c31c; --accent-deep: #5d7f04; --on-accent: #1a2404;
+      --orange: #ff8c00;
+
+      --bg: var(--orange);
+      --page-text: #ffffff;
+      --page-text-2: rgba(255, 255, 255, 0.92);
+      --page-text-3: rgba(255, 255, 255, 0.85);
+      --logo-nit: #ffffff;
+      --logo-cursor: #141410;
+
+      --surface: #ffffff;
+      --card-text: #1f1e1a;
+      --card-text-2: #5f5d54;
+      --card-text-3: #8f8d82;
+      --card-shadow: 0 0 0 1px rgba(190,95,0,0.35), 0 2px 4px rgba(150,75,0,0.18), 0 14px 32px -14px rgba(150,75,0,0.45);
+
+      --num-bg: rgba(145, 195, 28, 0.18); --num-text: var(--accent-deep);
+      --cmd-bg: rgba(31, 30, 26, 0.05); --cmd-code: #1f1e1a;
+      --copybtn-bg: rgba(145, 195, 28, 0.18); --copybtn-text: var(--accent-deep);
+      --chip-bg: rgba(31, 30, 26, 0.05); --chip-text: #5f5d54; --chip-soon-text: #8f8d82;
+      --chip-live-bg: rgba(145, 195, 28, 0.16); --chip-live-text: var(--accent-deep);
+      --chip-live-bg-hover: rgba(145, 195, 28, 0.28);
+      --dot-off: rgba(31, 30, 26, 0.18);
+      --done-bg: rgba(145, 195, 28, 0.16); --done-text: var(--accent-deep);
+    }
+    /* Dark values applied via data-theme, which welcome.js sets from the
+       user's saved choice or the system preference (auto). */
+    :root[data-theme="dark"] {
+        --bg: #292824;
+        --page-text: #f2f1ea;
+        --page-text-2: #b7b5a9;
+        --page-text-3: #868478;
+        --logo-nit: #f2f1ea;
+        --logo-cursor: #f2f1ea;
+
+        --surface: var(--orange);
+        --card-text: #241503;
+        --card-text-2: rgba(36, 21, 3, 0.82);
+        --card-text-3: rgba(36, 21, 3, 0.6);
+        --card-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.35), 0 14px 32px -14px rgba(0,0,0,0.6);
+
+        --num-bg: rgba(0, 0, 0, 0.14); --num-text: #241503;
+        --cmd-bg: rgba(0, 0, 0, 0.32); --cmd-code: #ffffff;
+        --copybtn-bg: rgba(255, 255, 255, 0.92); --copybtn-text: #9a5200;
+        --chip-bg: rgba(0, 0, 0, 0.12); --chip-text: rgba(36, 21, 3, 0.82); --chip-soon-text: rgba(36, 21, 3, 0.6);
+        --chip-live-bg: var(--accent); --chip-live-text: var(--on-accent);
+        --chip-live-bg-hover: #a4d63a;
+        --dot-off: rgba(0, 0, 0, 0.2);
+        --done-bg: rgba(0, 0, 0, 0.12); --done-text: #241503;
+    }
+    :root[data-theme="light"] { color-scheme: light; }
+    :root[data-theme="dark"] { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased; letter-spacing: -0.01em;
+      margin: 0; background: var(--bg); color: var(--page-text); font-size: 15px; line-height: 1.55;
+    }
+    main { max-width: 620px; margin: 0 auto; padding: 56px 24px 80px; }
+    .logo-wrap { display: flex; align-items: center; gap: 16px; }
+    .logo-wrap svg.logo { height: 41px; width: auto; display: block; }
+    .logo-wrap svg.logo .hl { fill: var(--accent); }
+    .logo-wrap svg.logo .pic { fill: #fff; }
+    .logo-wrap svg.logo .nit { fill: var(--logo-nit); }
+    .logo-wrap svg.logo .cursor { fill: var(--logo-cursor); }
+    .mascot-top svg { width: 58px; height: auto; display: block; }
+    h1 { font-size: 26px; letter-spacing: -0.03em; margin: 26px 0 6px; text-wrap: balance; color: var(--page-text); }
+    .sub { color: var(--page-text-2); margin: 0 0 34px; text-wrap: pretty; }
+    .step {
+      display: flex; gap: 16px; padding: 18px; border-radius: 18px;
+      background: var(--surface); box-shadow: var(--card-shadow); margin-bottom: 14px;
+    }
+    .step .num {
+      flex: none; width: 30px; height: 30px; border-radius: 50%; font-weight: 700; font-size: 14px;
+      background: var(--num-bg); color: var(--num-text);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step.done .num { background: var(--accent); color: var(--on-accent); }
+    .step h2 { font-size: 16px; margin: 3px 0 6px; letter-spacing: -0.02em; color: var(--card-text); }
+    .step p { margin: 0 0 8px; color: var(--card-text-2); font-size: 14px; text-wrap: pretty; }
+    .step p b { color: var(--card-text); }
+    .step a { color: var(--card-text); font-weight: 700; }
+    .cmd {
+      display: flex; align-items: center; gap: 8px; margin-top: 8px;
+      background: var(--cmd-bg);
+      border-radius: 10px; padding: 9px 12px;
+    }
+    .cmd code { flex: 1; font-family: ui-monospace, SFMono-Regular, monospace; font-size: 13px; overflow-x: auto; white-space: nowrap; color: var(--cmd-code); }
+    .cmd button {
+      flex: none; border: 0; cursor: pointer; font: inherit; font-weight: 600; font-size: 12px;
+      padding: 5px 12px; border-radius: 100px;
+      background: var(--copybtn-bg); color: var(--copybtn-text);
+      transition: transform 0.15s, background-color 0.15s;
+    }
+    .cmd button:active { transform: scale(0.96); }
+    .status {
+      margin-top: 28px; padding: 18px; border-radius: 18px;
+      background: var(--surface); box-shadow: var(--card-shadow);
+    }
+    .status h2 { font-size: 15px; margin: 0 0 12px; color: var(--card-text); }
+    .check { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 14px; color: var(--card-text-3); }
+    .check .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--dot-off); flex: none; transition: background-color 0.3s; }
+    .check.on { color: var(--card-text); }
+    .check.on .dot { background: var(--accent); }
+    #alldone {
+      display: none; margin-top: 14px; padding: 12px 16px; border-radius: 12px; font-weight: 600;
+      background: var(--done-bg); color: var(--done-text);
+    }
+    #alldone.show { display: block; }
+    .agents { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .agent {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 100px;
+      background: var(--chip-bg); color: var(--chip-text);
+    }
+    .agent.live { background: var(--chip-live-bg); color: var(--chip-live-text); text-decoration: none; }
+    a.agent.live:hover { background: var(--chip-live-bg-hover); }
+    .agent.soon { position: relative; cursor: default; color: var(--chip-soon-text); }
+    .agent.soon::after {
+      content: "Coming soon"; position: absolute; left: 50%; bottom: calc(100% + 7px);
+      transform: translateX(-50%) translateY(3px); white-space: nowrap;
+      background: #1f1e1a; color: #fff; font-size: 11px; font-weight: 600;
+      padding: 5px 10px; border-radius: 100px; pointer-events: none;
+      opacity: 0; transition: opacity 0.15s, transform 0.15s;
+    }
+    .agent.soon:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+    footer { margin-top: 40px; font-size: 12.5px; color: var(--page-text-3); }
+    footer a { color: inherit; }
+    .theme-toggle {
+      position: fixed; top: 18px; right: 20px; z-index: 10;
+      border: 0; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600;
+      padding: 7px 13px; border-radius: 100px;
+      background: rgba(0, 0, 0, 0.18); color: var(--page-text);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      transition: transform 0.15s, background-color 0.15s;
+    }
+    .theme-toggle:hover { background: rgba(0, 0, 0, 0.28); }
+    .theme-toggle:active { transform: scale(0.96); }
+  </style>
+</head>
+<body>
+  <button id="themeToggle" class="theme-toggle" title="Switch theme">🌗 Auto</button>
+  <main>
+    <div class="logo-wrap"><!--LOGO--><div class="mascot-top"><!--MASCOT--></div></div>
+    <h1>Two minutes to your first nitpic</h1>
+    <p class="sub">nitpic sends your clicks and comments straight into a running Claude Code session. The extension is installed — now connect the Claude Code side.</p>
+
+    <div class="step done">
+      <div class="num">✓</div>
+      <div><h2>Chrome extension installed</h2><p>That's this. Nothing more to do here.</p></div>
+    </div>
+
+    <div class="step">
+      <div class="num">2</div>
+      <div>
+        <h2>Make sure you have one of the following coding tools</h2>
+        <div class="agents">
+          <a class="agent live" href="https://claude.com/claude-code" target="_blank" rel="noreferrer">Claude Code</a>
+          <span class="agent soon">Cursor</span>
+          <span class="agent soon">Codex</span>
+          <span class="agent soon">Gemini CLI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">3</div>
+      <div style="min-width: 0;">
+        <h2>Install the nitpic plugin</h2>
+        <p>Paste these into any Claude Code session:</p>
+        <div class="cmd"><code>/plugin marketplace add jibril4000/nitpic</code><button data-copy="/plugin marketplace add jibril4000/nitpic">Copy</button></div>
+        <div class="cmd"><code>/plugin install nitpic@nitpic</code><button data-copy="/plugin install nitpic@nitpic">Copy</button></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">4</div>
+      <div>
+        <h2>Type <b>/nitpic</b> in your session</h2>
+        <p>That session becomes the one your feedback lands in. Run it in a different session anytime to move the connection.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">5</div>
+      <div>
+        <h2>Click the nitpic icon on any page</h2>
+        <p>The floating panel opens and pairs itself automatically — nothing to copy. Then hit <b>Start feedback</b> and click anything.</p>
+      </div>
+    </div>
+
+    <div class="status">
+      <h2>Live status</h2>
+      <div class="check" id="ck-ext"><span class="dot"></span>Extension installed</div>
+      <div class="check" id="ck-daemon"><span class="dot"></span>Connected to nitpic on this Mac (starts when you run /nitpic)</div>
+      <div class="check" id="ck-session"><span class="dot"></span>A Claude Code session is listening</div>
+      <div id="alldone">🎉 You're all set — open any page, click the nitpic icon, and start clicking.</div>
+    </div>
+
+    <footer>
+      Made by <a href="https://linkedin.com/in/jibril-ai" target="_blank" rel="noreferrer">Jibril</a>
+      · <a href="https://buymeacoffee.com/jibrilai" target="_blank" rel="noreferrer">☕ Buy me a coffee</a>
+    </footer>
+  </main>
+  <script src="welcome.js"></script>
+</body>
+</html>

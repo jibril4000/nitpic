@@ -1,0 +1,11 @@
+{
+  "name": "nitpic",
+  "owner": { "name": "jibril" },
+  "plugins": [
+    {
+      "name": "nitpic",
+      "source": "./plugin",
+      "description": "Browser feedback → your running Claude Code session. /nitpic to connect, then click and comment on anything in Chrome."
+    }
+  ]
+}

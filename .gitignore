@@ -1,0 +1,10 @@
+node_modules/
+daemon/dist/
+shared/dist/
+extension/dist/
+*.tsbuildinfo
+.feedback/
+.DS_Store
+*.zip
+
+# plugin/dist is committed on purpose: the marketplace installs pre-built bundles
