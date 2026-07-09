@@ -616,7 +616,7 @@
     </div>
   </div>
   <div class="np-body">
-    <div class="np-hint"><b>Feedback mode is on.</b> Click any element on this page (headline, cards, icons) and leave a comment — just like the real thing. Nothing leaves your browser.</div>
+    <div class="np-hint"><b>Feedback mode is on.</b> Click anything up top — the headline, the nav, a button — and leave a comment, just like the real thing. Nothing leaves your browser.</div>
     <div class="np-compose">
       <div class="np-sel" id="npSel">element</div>
       <textarea class="np-field" id="npField" rows="2" placeholder="Say what should change…"></textarea>
@@ -650,6 +650,8 @@
 
     const inPanel = (el) => panel.contains(el) || el === hl;
     const isControl = (el) => el.closest && el.closest("a, button, input, textarea, label, select, [data-copy]");
+    // demo is confined to the top of the page — the header nav bar and the hero
+    const inDemoZone = (el) => el.closest && el.closest("header, section.hero");
     function selectorFor(el) {
       if (el.id) return "#" + el.id;
       let s = el.tagName.toLowerCase();
@@ -676,7 +678,7 @@
     document.addEventListener("mousemove", (e) => {
       if (!on || panel.classList.contains("composing")) return;
       const el = e.target;
-      if (!el || inPanel(el) || isControl(el)) { hl.style.display = "none"; return; }
+      if (!el || inPanel(el) || isControl(el) || !inDemoZone(el)) { hl.style.display = "none"; return; }
       const r = el.getBoundingClientRect();
       if (r.width < 6 || r.height < 6) { hl.style.display = "none"; return; }
       hl.style.display = "block";
@@ -685,7 +687,7 @@
     });
 
     document.addEventListener("click", (e) => {
-      if (!on || inPanel(e.target) || isControl(e.target)) return;
+      if (!on || inPanel(e.target) || isControl(e.target) || !inDemoZone(e.target)) return;
       e.preventDefault(); e.stopPropagation();
       target = e.target;
       selBox.textContent = selectorFor(target);
