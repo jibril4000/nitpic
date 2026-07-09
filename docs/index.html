@@ -115,8 +115,8 @@
     box-shadow: var(--shadow-sm); padding: 10px 14px; font-size: 14px; font-weight: 600; width: max-content; max-width: 240px;
   }
   .anno .card .sent { display: block; font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--green-deep); margin-top: 3px; }
-  .anno-1 { right: 4%; top: 70px; animation-delay: 1.5s; transform-origin: bottom right; }
-  .anno-2 { left: 46%; bottom: 118px; animation-delay: 2.1s; }
+  .anno-1 { right: 17%; top: 54px; animation-delay: 1.5s; transform-origin: bottom right; }
+  .anno-2 { right: 20%; bottom: 72px; animation-delay: 2.1s; }
   @media (max-width: 900px) { .anno-1 { display: none; } }
   @media (max-width: 680px) { .anno-2 { display: none; } }
 
@@ -170,7 +170,10 @@
   .term .dots i { width: 9px; height: 9px; border-radius: 50%; background: #55524a; }
   .term .p { color: var(--green); }
   .term .dim { color: #8a8778; }
-  .term .caret2 { display: inline-block; width: 7px; height: 13px; background: var(--green); vertical-align: -2px; animation: blink 1.1s steps(1) infinite; }
+  .term .caret2 { display: inline-block; width: 7px; height: 13px; background: var(--green); vertical-align: -2px; animation: blink 1.1s steps(1) infinite; margin-left: 4px; }
+  .term .spin-line { margin-top: 4px; }
+  .term .spinner { display: inline-block; color: var(--green); animation: spin 0.9s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   /* ---------- features ---------- */
   .features { background: var(--green); padding: 96px 0 110px; border-block: 3px solid var(--ink); }
@@ -180,7 +183,9 @@
   .tile { border: 3px solid var(--ink); border-radius: 18px; padding: 22px; box-shadow: var(--shadow-sm); background: var(--white); }
   .tile:nth-child(3n+2) { background: var(--bone); }
   .tile:nth-child(3n) { background: var(--orange); }
-  .tile .em { font-size: 26px; display: block; margin-bottom: 10px; }
+  .tile .ic { display: block; margin-bottom: 12px; }
+  .tile .ic svg { width: 30px; height: 30px; display: block; color: var(--orange); }
+  .tile:nth-child(3n) .ic svg { color: var(--white); }
   .tile h3 { font-family: var(--display); font-size: 20px; margin-bottom: 6px; letter-spacing: -0.01em; }
   .tile p { font-size: 14px; color: #33302a; }
 
@@ -196,8 +201,30 @@
     content: "coming soon"; position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%);
     background: var(--ink); color: var(--white); font-family: var(--mono); font-size: 11px; padding: 5px 10px; border-radius: 8px; white-space: nowrap;
   }
-  .agents-pigeon { width: 130px; flex: none; }
+  .agents-pigeon { width: 130px; flex: none; position: relative; }
   .agents-pigeon svg { width: 100%; height: auto; }
+  .pigeon-bubble {
+    position: absolute; bottom: calc(100% + 4px); left: 50%; transform: translateX(-38%);
+    background: var(--white); border: 3px solid var(--ink); border-radius: 14px;
+    box-shadow: var(--shadow-sm); height: 40px; min-width: 92px;
+    font-family: var(--display); font-weight: 800; font-size: 17px; z-index: 2;
+  }
+  .pigeon-bubble::after { content: ""; position: absolute; top: 100%; left: 30%; border: 9px solid transparent; border-top-color: var(--ink); }
+  .pigeon-bubble::before { content: ""; position: absolute; top: calc(100% - 4px); left: 32%; border: 6px solid transparent; border-top-color: var(--white); z-index: 1; }
+  .pigeon-bubble span {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    opacity: 0; animation: bubbleCycle 8s infinite;
+  }
+  .pigeon-bubble span:nth-child(1) { animation-delay: 0s; }
+  .pigeon-bubble span:nth-child(2) { animation-delay: 2s; }
+  .pigeon-bubble span:nth-child(3) { animation-delay: 4s; }
+  .pigeon-bubble span:nth-child(4) { animation-delay: 6s; }
+  @keyframes bubbleCycle {
+    0% { opacity: 0; transform: translateY(6px) scale(0.94); }
+    6%, 21% { opacity: 1; transform: none; }
+    27%, 100% { opacity: 0; transform: translateY(-4px); }
+  }
+  @media (max-width: 880px) { .pigeon-bubble { left: auto; right: 0; transform: none; } }
 
   /* ---------- install ---------- */
   .install { background: var(--orange); padding: 96px 0 110px; }
@@ -210,6 +237,75 @@
   .cmd code { font-family: var(--mono); font-size: 13px; color: var(--green); flex: 1; overflow-x: auto; white-space: nowrap; }
   .cmd button { font-family: var(--body); font-weight: 700; font-size: 12px; background: var(--white); color: var(--ink); border: 0; border-radius: 100px; padding: 6px 14px; cursor: pointer; flex: none; transition: transform 0.12s; }
   .cmd button:active { transform: scale(0.94); }
+
+  /* ---------- interactive demo panel ---------- */
+  .np-hl {
+    position: fixed; pointer-events: none; z-index: 9998; display: none;
+    border: 2px solid var(--green-deep); background: rgba(145,195,28,0.16);
+    border-radius: 6px; box-shadow: 0 0 0 2px rgba(20,20,16,0.12);
+  }
+  body.np-on, body.np-on * { cursor: crosshair !important; }
+  body.np-on .np-panel, body.np-on .np-panel * { cursor: auto !important; }
+
+  .np-panel { position: fixed; left: 22px; bottom: 22px; z-index: 9999; font-family: var(--body); }
+
+  /* collapsed badge — the small floating pill, like the real plugin */
+  .np-badge {
+    display: none; align-items: center; gap: 9px; cursor: pointer;
+    background: var(--white); border: 3px solid var(--ink); border-radius: 100px;
+    box-shadow: var(--shadow-sm); padding: 9px 18px 9px 13px;
+    font-family: var(--display); font-weight: 800; font-size: 15px; color: var(--ink);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .np-badge:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+  .np-badge:active { transform: translate(1px,1px); box-shadow: 2px 2px 0 var(--ink); }
+  .np-panel.collapsed .np-badge { display: inline-flex; }
+  .np-panel.collapsed .np-card { display: none; }
+
+  .np-card {
+    width: 322px; background: var(--white); border: 3px solid var(--ink);
+    border-radius: 16px; box-shadow: var(--shadow); overflow: hidden;
+    animation: pop 0.28s cubic-bezier(0.2,0,0,1);
+  }
+  .np-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 11px 12px 11px 14px; border-bottom: 3px solid var(--ink); background: var(--orange);
+  }
+  .np-brand { display: flex; align-items: center; gap: 8px; font-family: var(--display); font-weight: 800; font-size: 17px; }
+  .np-head-actions { display: flex; align-items: center; gap: 10px; }
+  .np-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--ink); flex: none; transition: background 0.15s; }
+  .np-panel.on .np-dot { background: var(--green); }
+  .np-panel.on .np-brand .np-dot { box-shadow: 0 0 0 3px rgba(145,195,28,0.4); }
+  .np-panel.on .np-badge .np-dot { animation: npPulse 1.7s ease-in-out infinite; }
+  @keyframes npPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(145,195,28,0.55); } 60% { box-shadow: 0 0 0 7px rgba(145,195,28,0); } }
+  .np-toggle { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; cursor: pointer; user-select: none; }
+  .np-switch { width: 38px; height: 21px; border: 2px solid var(--ink); border-radius: 100px; background: var(--white); position: relative; transition: background 0.15s; flex: none; }
+  .np-switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 13px; height: 13px; border-radius: 50%; background: var(--ink); transition: transform 0.15s; }
+  .np-panel.on .np-switch { background: var(--green); }
+  .np-panel.on .np-switch::after { transform: translateX(17px); }
+  .np-min { border: 2px solid var(--ink); background: var(--white); border-radius: 8px; width: 26px; height: 26px; font-size: 17px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0 0 3px; }
+  .np-min:active { transform: scale(0.94); }
+  .np-body { padding: 14px; }
+  .np-hint { font-size: 13px; color: #55524a; line-height: 1.45; }
+  .np-hint b { color: var(--ink); }
+  .np-compose { display: none; }
+  .np-panel.composing .np-compose { display: block; }
+  .np-panel.composing .np-hint { display: none; }
+  .np-sel { font-family: var(--mono); font-size: 11px; background: var(--bone); border: 2px solid #d8d5c9; border-radius: 7px; padding: 6px 8px; margin-bottom: 8px; color: var(--green-deep); word-break: break-all; }
+  .np-field { width: 100%; border: 2px solid var(--ink); border-radius: 9px; padding: 9px 11px; font-family: var(--body); font-size: 13.5px; resize: none; }
+  .np-field:focus { outline: none; box-shadow: 3px 3px 0 var(--green); }
+  .np-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+  .np-btn { font-family: var(--body); font-weight: 700; font-size: 13px; border: 2px solid var(--ink); border-radius: 100px; padding: 7px 16px; cursor: pointer; background: var(--white); transition: transform 0.1s; }
+  .np-btn:active { transform: scale(0.95); }
+  .np-btn.send { background: var(--green); }
+  .np-btn:disabled { opacity: 0.7; cursor: default; }
+  .np-list { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; max-height: 168px; overflow-y: auto; }
+  .np-item { border: 2px solid var(--ink); border-radius: 10px; padding: 8px 10px; font-size: 12.5px; background: var(--bone); animation: pop 0.3s cubic-bezier(0.2,0,0,1); }
+  .np-item .np-status { display: block; font-family: var(--mono); font-size: 10.5px; margin-top: 4px; }
+  .np-item .np-status.sending { color: #9a6800; }
+  .np-item .np-status.sent { color: var(--green-deep); }
+  .np-mini-spin { display: inline-block; animation: spin 0.9s linear infinite; }
+  @media (max-width: 560px) { .np-panel, .np-badge, .np-hl { display: none !important; } }
 
   /* ---------- footer ---------- */
   footer { background: var(--ink); color: var(--bone); padding: 64px 0 40px; }
@@ -373,9 +469,8 @@
         <p>It lands in your Claude Code session like you typed it there. Claude reads the screenshot and gets to work.</p>
         <div class="demo term">
           <div class="dots"><i></i><i></i><i></i></div>
-          <div><span class="p">❯</span> New browser feedback (1 item) —</div>
-          <div>please read <span class="p">.feedback/fb-0042.md</span></div>
-          <div class="dim">⏺ On it — right-aligning the save button…<span class="caret2"></span></div>
+          <div class="p">✓ Feedback received from nitpic</div>
+          <div class="dim spin-line"><span class="spinner">✳</span> On it…<span class="caret2"></span></div>
         </div>
       </div>
     </div>
@@ -387,12 +482,12 @@
     <span class="kicker rv">why nitpic</span>
     <h2 class="title rv">Stop describing pixels over the phone.</h2>
     <div class="tiles">
-      <div class="tile rv"><span class="em">⚡</span><h3>Instant delivery</h3><p>Feedback reaches your terminal within a second. tmux and iTerm2 get true keystroke injection.</p></div>
-      <div class="tile rv"><span class="em">🎯</span><h3>Pixel-precise</h3><p>CSS selector, cropped screenshot, and HTML snippet captured automatically with every comment.</p></div>
-      <div class="tile rv"><span class="em">🎛</span><h3>You pick the session</h3><p>Type /nitpic in the session that should listen. Run it elsewhere to pass the mic.</p></div>
-      <div class="tile rv"><span class="em">📚</span><h3>Batch reviews</h3><p>Collect nitpicks across pages and tabs, send them as one message — grouped by page.</p></div>
-      <div class="tile rv"><span class="em">🫧</span><h3>Floats above your app</h3><p>The panel overlays the page. Your viewport never shrinks, breakpoints never trigger.</p></div>
-      <div class="tile rv"><span class="em">🔒</span><h3>100% local</h3><p>No accounts, no servers, no telemetry. Everything stays between your browser and your terminal.</p></div>
+      <div class="tile rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><h3>Instant delivery</h3><p>Feedback reaches your terminal within a second. tmux and iTerm2 get true keystroke injection.</p></div>
+      <div class="tile rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span><h3>Pixel-precise</h3><p>CSS selector, cropped screenshot, and HTML snippet captured automatically with every comment.</p></div>
+      <div class="tile rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></span><h3>You pick the session</h3><p>Type /nitpic in the session that should listen. Run it elsewhere to pass the mic.</p></div>
+      <div class="tile rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span><h3>Batch reviews</h3><p>Collect nitpicks across pages and tabs, send them as one message — grouped by page.</p></div>
+      <div class="tile rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 9V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h4"/><rect width="10" height="7" x="12" y="13" rx="2"/></svg></span><h3>Floats above your app</h3><p>The panel overlays the page. Your viewport never shrinks, breakpoints never trigger.</p></div>
+      <div class="tile rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><h3>100% local</h3><p>No accounts, no servers, no telemetry. Everything stays between your browser and your terminal.</p></div>
     </div>
   </div>
 </section>
@@ -408,7 +503,7 @@
         <span class="chip soon">Codex</span>
         <span class="chip soon">Gemini CLI</span>
       </div>
-      <div class="agents-pigeon" title="the quality inspector"><svg width="1291" height="1352" viewBox="0 0 1291 1352" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div class="agents-pigeon" title="the quality inspector"><div class="pigeon-bubble" aria-hidden="true"><span>Wattup</span><span>Say…</span><span>uhhhhh</span><span>Stay lit</span></div><svg width="1291" height="1352" viewBox="0 0 1291 1352" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M570.929 0.173578C663.904 -2.55411 758.612 26.665 817.691 102.09C826.063 112.777 832.631 123.574 839.77 135.087C848.811 136.691 861.132 136.763 870.779 138.134C892.016 141.152 912.298 146.216 932.33 153.819C982.208 172.203 1022.61 209.842 1044.48 258.288C1063.4 300.729 1066.18 351.485 1049.45 395.115C1066.42 401.148 1095.55 422.646 1108.15 435.229C1147.43 474.458 1165.89 518.616 1167.13 573.506C1184.22 584.494 1201.73 600.84 1214.25 616.802C1239.89 649.806 1254.07 690.268 1254.63 732.057C1254.71 743.736 1253.06 755.839 1251.7 767.447C1254.95 770.504 1258.33 774.662 1261.02 778.227C1318.49 854.598 1284.22 946.825 1234.52 1015.72C1145.58 1138.98 1013.22 1218.58 866.502 1252.82C860.108 1254.31 853.429 1255.48 847.181 1257.56L846.269 1257.87C841.4 1266.01 838.767 1272.11 832.603 1279.97C807.772 1311.45 771.052 1331.02 733.711 1343.4C703.58 1353.39 645.605 1360.67 633.411 1321.34C630.784 1302.28 634.752 1295.23 644.952 1280.16C624.83 1281.79 594.189 1279.45 572.751 1279.57C558.197 1293.69 545.034 1304.74 526.498 1314.26C489.677 1332.63 441.11 1347.71 400.398 1336.54C376.23 1329.91 363.131 1305.74 374.636 1282.85C382.647 1266.92 397.124 1256.73 412.808 1248.88C399.639 1244.69 386.342 1235.71 373.448 1231.56C370.844 1230.73 357.964 1231.74 354.246 1231.86C347.243 1232.07 340.233 1232 333.234 1231.68C251.513 1227.79 157.998 1175.05 117.313 1103.19C109.95 1090.19 105.163 1075.06 100.958 1060.77C85.3292 1059.85 64.3 1051.5 52.7232 1040.87C30.8715 1020.79 26.0982 1003.18 24.2945 975.397C-2.56274 940.551 -5.85378 905.489 8.14245 864.208C4.40013 853.505 1.45129 836.151 0.539687 825.03C-3.09655 780.657 11.906 739.766 37.5736 704.112C42.3771 697.434 49.5784 689.544 55.053 683.089C54.2109 660.776 54.9848 647.188 60.1244 625.224C70.8208 579.519 101.654 534.768 134.328 501.744C139.972 496.039 150.694 485.562 157.305 481.496C143.888 443.632 144.407 402.225 158.771 364.708C182.949 301.642 237.936 260.829 297.696 234.293C300.63 229.442 305.252 223.76 307.566 219.826C310.893 212.562 311.269 203.138 313.032 195.503C321.834 157.396 338.654 121.085 364.127 91.2817C417.298 29.0689 491.395 5.46475 570.929 0.173578Z" fill="black"/>
 <path d="M1242.89 786.402C1251.65 791.646 1264.56 822.349 1267.19 832.627C1279.5 880.621 1265.81 925.544 1242.58 966.978C1170.29 1095.93 1027.45 1191.7 885.713 1228.64C752.497 1263.36 575.695 1277.8 441.575 1238.51C428.974 1234.82 399.162 1224.59 388.343 1217.67C359.577 1199.25 342.174 1159.06 333.947 1127.42C328.017 1098.74 328.203 1069.14 334.491 1040.54C347.826 1046.08 382.718 1051.98 398.405 1054.96C530.089 1080.37 665.913 1074.31 794.811 1037.27C806.707 1065.82 820.087 1087.19 847.746 1103C869.665 1115.53 886.646 1117.16 911.261 1117.25C966.46 1174.31 1070.14 1157.87 1100.14 1083.16C1105.88 1068.86 1107.34 1055.51 1107.25 1040.26C1145.13 1001.08 1145.13 950.279 1123.36 902.766C1158.27 884.953 1199.03 849.716 1222.51 818.373C1230.29 807.997 1236.41 797.593 1242.89 786.402Z" fill="#95C71F"/>
 <path d="M849.236 154.748C902.178 159.154 951.805 174.984 990.239 213.238C1022.04 244.897 1041.86 289.174 1041.75 334.324C1041.65 380.255 1020.89 418.146 989.062 449.842C897.783 540.75 679.752 596.573 552.378 612.311C520.473 616.151 488.368 618.093 456.232 618.127C432.805 618.291 390.802 614.799 368.234 610.14C410.466 501.254 493.067 446.398 598.839 405.56C646.388 386.904 694.567 372.327 742.174 353.673C804.192 329.374 869.686 298.638 908.475 241.835C911.539 237.343 921.061 223.144 914.924 218.392C901.697 208.152 896.933 226.31 890.679 234.286C885.107 242.133 881.366 246.806 875.864 252.993C874.415 245.308 873.781 236.793 872.305 228.811C867.687 203.27 859.941 178.395 849.236 154.748Z" fill="#95C71F"/>
@@ -473,7 +568,7 @@
       <div class="ibox rv">
         <h3>1 · Add the extension</h3>
         <p>One click from the Chrome Web Store. A welcome page walks you through the rest with a live checklist.</p>
-        <a class="btn green" href="https://github.com/jibril4000/nitpic#-quick-start" target="_blank" rel="noreferrer">🧩 Add to Chrome — coming soon</a>
+        <a class="btn green" href="https://github.com/jibril4000/nitpic#-quick-start" target="_blank" rel="noreferrer">Add to Chrome — coming soon</a>
       </div>
       <div class="ibox rv">
         <h3>2 · Add the plugin</h3>
@@ -510,7 +605,112 @@
   </div>
 </footer>
 
+<div class="np-panel collapsed on" id="npPanel">
+  <button class="np-badge" id="npBadge" type="button"><span class="np-dot"></span> Try it now</button>
+  <div class="np-card">
+  <div class="np-head">
+    <div class="np-brand"><span class="np-dot"></span> nitpic</div>
+    <div class="np-head-actions">
+      <label class="np-toggle"><span>Live</span><span class="np-switch" id="npSwitch" role="switch" tabindex="0" aria-label="Toggle feedback mode"></span></label>
+      <button class="np-min" id="npMin" type="button" aria-label="Collapse panel">–</button>
+    </div>
+  </div>
+  <div class="np-body">
+    <div class="np-hint"><b>Feedback mode is on.</b> Click any element on this page (headline, cards, icons) and leave a comment — just like the real thing. Nothing leaves your browser.</div>
+    <div class="np-compose">
+      <div class="np-sel" id="npSel">element</div>
+      <textarea class="np-field" id="npField" rows="2" placeholder="Say what should change…"></textarea>
+      <div class="np-actions">
+        <button class="np-btn" id="npCancel" type="button">Cancel</button>
+        <button class="np-btn send" id="npSend" type="button">Send</button>
+      </div>
+    </div>
+    <div class="np-list" id="npList"></div>
+  </div>
+  </div>
+</div>
+<div class="np-hl" id="npHl"></div>
+
 <script>
+  /* interactive "try it now" demo panel — feedback mode on by default, collapsed to a badge */
+  (function () {
+    const panel = document.getElementById("npPanel");
+    const badge = document.getElementById("npBadge");
+    const minBtn = document.getElementById("npMin");
+    const sw = document.getElementById("npSwitch");
+    const hl = document.getElementById("npHl");
+    const selBox = document.getElementById("npSel");
+    const field = document.getElementById("npField");
+    const sendBtn = document.getElementById("npSend");
+    const cancelBtn = document.getElementById("npCancel");
+    const list = document.getElementById("npList");
+    let on = panel.classList.contains("on"), target = null;
+
+    document.body.classList.toggle("np-on", on);
+
+    const inPanel = (el) => panel.contains(el) || el === hl;
+    const isControl = (el) => el.closest && el.closest("a, button, input, textarea, label, select, [data-copy]");
+    function selectorFor(el) {
+      if (el.id) return "#" + el.id;
+      let s = el.tagName.toLowerCase();
+      if (el.classList && el.classList.length) s += "." + [...el.classList].slice(0, 2).join(".");
+      return s;
+    }
+    function closeCompose() { panel.classList.remove("composing"); target = null; }
+    function expand() { panel.classList.remove("collapsed"); }
+    function collapse() { panel.classList.add("collapsed"); closeCompose(); hl.style.display = "none"; }
+    function setOn(v) {
+      on = v;
+      panel.classList.toggle("on", v);
+      document.body.classList.toggle("np-on", v);
+      if (!v) { hl.style.display = "none"; closeCompose(); }
+    }
+
+    badge.addEventListener("click", expand);
+    minBtn.addEventListener("click", collapse);
+    sw.addEventListener("click", (e) => { e.stopPropagation(); setOn(!on); });
+    sw.addEventListener("keydown", (e) => {
+      if (e.key === " " || e.key === "Enter") { e.preventDefault(); setOn(!on); }
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!on || panel.classList.contains("composing")) return;
+      const el = e.target;
+      if (!el || inPanel(el) || isControl(el)) { hl.style.display = "none"; return; }
+      const r = el.getBoundingClientRect();
+      if (r.width < 6 || r.height < 6) { hl.style.display = "none"; return; }
+      hl.style.display = "block";
+      hl.style.left = r.left + "px"; hl.style.top = r.top + "px";
+      hl.style.width = r.width + "px"; hl.style.height = r.height + "px";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!on || inPanel(e.target) || isControl(e.target)) return;
+      e.preventDefault(); e.stopPropagation();
+      target = e.target;
+      selBox.textContent = selectorFor(target);
+      expand();
+      panel.classList.add("composing");
+      hl.style.display = "none";
+      field.value = ""; field.focus();
+    }, true);
+
+    cancelBtn.addEventListener("click", closeCompose);
+    sendBtn.addEventListener("click", () => {
+      const txt = (field.value.trim() || "make this pop more").replace(/</g, "&lt;");
+      const item = document.createElement("div");
+      item.className = "np-item";
+      item.innerHTML = '“' + txt + '”<span class="np-status sending"><span class="np-mini-spin">✳</span> Sending to Claude…</span>';
+      list.prepend(item);
+      closeCompose();
+      setTimeout(() => {
+        const st = item.querySelector(".np-status");
+        st.className = "np-status sent";
+        st.textContent = "✓ Sent!";
+      }, 1300);
+    });
+  })();
+
   for (const btn of document.querySelectorAll("[data-copy]")) {
     btn.addEventListener("click", async () => {
       await navigator.clipboard.writeText(btn.dataset.copy);
