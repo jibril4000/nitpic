@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy — nitpic</title>
+<meta name="description" content="nitpic privacy policy: everything is local, nothing is collected." />
+<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root { --orange: #ff8c00; --green: #91c31c; --ink: #141410; --bone: #f6f5f0; }
+  * { box-sizing: border-box; margin: 0; }
+  body { font-family: "Archivo", sans-serif; background: var(--bone); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  header { background: var(--orange); border-bottom: 3px solid var(--ink); padding: 16px 24px; }
+  header a { font-family: "Bricolage Grotesque", sans-serif; font-size: 22px; color: #fff; text-decoration: none; letter-spacing: -0.02em; }
+  header a .pic { background: var(--green); padding: 0 4px; border-radius: 3px; }
+  main { max-width: 720px; margin: 0 auto; padding: 56px 24px 90px; }
+  h1 { font-family: "Bricolage Grotesque", sans-serif; font-size: clamp(32px, 5vw, 44px); letter-spacing: -0.02em; margin-bottom: 8px; }
+  .updated { font-size: 13px; color: #8a8778; margin-bottom: 36px; }
+  h2 { font-family: "Bricolage Grotesque", sans-serif; font-size: 22px; margin: 34px 0 10px; letter-spacing: -0.01em; }
+  p, li { font-size: 15.5px; color: #33302a; }
+  ul { padding-left: 22px; margin: 8px 0; }
+  .tldr { background: var(--green); border: 3px solid var(--ink); border-radius: 14px; padding: 16px 20px; font-weight: 600; box-shadow: 5px 5px 0 var(--ink); margin-bottom: 36px; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<header><a href="/">nit<span class="pic">pic</span></a></header>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: July 9, 2026</p>
+
+  <div class="tldr">TL;DR — nitpic collects nothing. No accounts, no analytics, no servers. Your feedback, screenshots, and code never leave your computer.</div>
+
+  <h2>What nitpic is</h2>
+  <p>nitpic consists of a Chrome extension and a companion plugin for Claude Code that run entirely on your own machine. The extension captures feedback you explicitly create (comments, cropped screenshots, HTML snippets of elements you click) and delivers it to a small local companion process, which passes it to your own AI coding agent session on the same computer.</p>
+
+  <h2>Data we collect</h2>
+  <p><b>None.</b> nitpic has no servers, no accounts, no analytics, no telemetry, and no crash reporting. We (the developers) never see your data, and the extension never transmits anything over the internet.</p>
+
+  <h2>Data that stays on your device</h2>
+  <ul>
+    <li><b>Feedback you create</b> — comments, screenshots, and HTML snippets are stored in your browser's local extension storage until you send them, and then in a <code>.feedback/</code> folder inside your own project directory.</li>
+    <li><b>Pairing token</b> — a random token that authenticates the extension to the local companion process. It exists only in your browser's local storage and a config file in your home directory.</li>
+    <li><b>Settings</b> — panel position, theme, and preferences, stored locally in the browser.</li>
+  </ul>
+
+  <h2>Permissions, explained</h2>
+  <ul>
+    <li><b>Access to websites</b> — needed so you can annotate any page you're viewing, including local development servers. Page content is only read when you explicitly click an element in feedback mode.</li>
+    <li><b>Clipboard read</b> — used once, during setup, to detect the pairing code that the companion places on your clipboard. Only text exactly matching the pairing-code format is acted on; anything else is ignored and never stored.</li>
+    <li><b>Storage</b> — keeps your unsent feedback and settings on your device.</li>
+    <li><b>Alarms &amp; offscreen documents</b> — internal plumbing to maintain the local connection and perform the clipboard check.</li>
+  </ul>
+
+  <h2>Third parties</h2>
+  <p>There are none. nitpic embeds no third-party analytics, ads, trackers, or SDKs. The extension communicates exclusively with the nitpic companion process at <code>127.0.0.1</code> on your own machine. What your AI coding agent (e.g. Claude Code) does with the feedback you send it is governed by that tool's own privacy policy.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy ever changes, the updated version will be published at this address with a new date. Because nitpic collects nothing, meaningful changes are unlikely.</p>
+
+  <h2>Contact</h2>
+  <p>Questions? Open an issue at <a href="https://github.com/jibril4000/nitpic">github.com/jibril4000/nitpic</a> or reach out via <a href="https://linkedin.com/in/jibril-ai">LinkedIn</a>.</p>
+</main>
+</body>
+</html>
