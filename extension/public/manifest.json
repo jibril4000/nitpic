@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "nitpic — browser feedback for Claude Code",
+  "name": "nitpic — browser feedback for AI coding agents",
   "version": "1.0.0",
-  "description": "Highlight elements on any page, leave comments, and send them straight into your running Claude Code session.",
+  "description": "Click any element, comment, and it lands in your Claude Code session. Cursor, Codex & Gemini CLI on the roadmap.",
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
