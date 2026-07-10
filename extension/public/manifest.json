@@ -9,18 +9,10 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "permissions": ["storage", "unlimitedStorage", "alarms", "clipboardRead", "offscreen", "scripting"],
-  "host_permissions": ["<all_urls>"],
+  "permissions": ["activeTab", "storage", "unlimitedStorage", "alarms", "clipboardRead", "offscreen", "scripting"],
   "background": {
     "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
-    }
-  ],
   "action": {
     "default_title": "nitpic — toggle the feedback panel",
     "default_icon": {

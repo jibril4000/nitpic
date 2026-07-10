@@ -318,15 +318,21 @@ async function handleMessage(
 
     case "toggle-mode": {
       const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-      if (tab?.id !== undefined) {
+      if (tab?.id === undefined) return { ok: false, error: "no active tab" };
+      try {
+        const res = await chrome.tabs.sendMessage(tab.id, { cmd: "toggle-mode" });
+        return { ok: true, active: res?.active };
+      } catch {
+        // No content script yet — the hotkey is a user gesture, so activeTab lets
+        // us inject on the spot and retry, no page refresh needed.
         try {
+          await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ["content.js"] });
           const res = await chrome.tabs.sendMessage(tab.id, { cmd: "toggle-mode" });
           return { ok: true, active: res?.active };
         } catch {
           return { ok: false, error: "This page can't be annotated (try reloading it)." };
         }
       }
-      return { ok: false, error: "no active tab" };
     }
 
     default:
@@ -358,18 +364,12 @@ chrome.action.onClicked.addListener(async (tab) => {
   }
 });
 
-// On install/update, arm all already-open pages so nothing needs a refresh —
-// and greet brand-new installs with the setup guide.
+// Greet brand-new installs with the setup guide. (Under activeTab there's no
+// broad host access to pre-inject open tabs — the content script loads the
+// first time you click the toolbar icon or hit the hotkey on a page.)
 chrome.runtime.onInstalled.addListener(async (details) => {
   if (details.reason === "install") {
     void chrome.tabs.create({ url: chrome.runtime.getURL("welcome.html") });
-  }
-  const tabs = await chrome.tabs.query({ url: ["http://*/*", "https://*/*"] });
-  for (const t of tabs) {
-    if (t.id === undefined) continue;
-    void chrome.scripting
-      .executeScript({ target: { tabId: t.id }, files: ["content.js"] })
-      .catch(() => {});
   }
 });
 

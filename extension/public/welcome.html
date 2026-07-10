@@ -4,10 +4,9 @@
   <meta charset="utf-8" />
   <title>Welcome to nitpic</title>
   <style>
-    /* Light: hero-orange page, white cards. Dark: warm-grey page, orange cards
-       with dark ink. Auto-switches with the system preference. */
+    /* Hero-orange page, white cards. */
     :root {
-      color-scheme: light dark;
+      color-scheme: light;
       --accent: #91c31c; --accent-deep: #5d7f04; --on-accent: #1a2404;
       --orange: #ff8c00;
 
@@ -33,33 +32,6 @@
       --dot-off: rgba(31, 30, 26, 0.18);
       --done-bg: rgba(145, 195, 28, 0.16); --done-text: var(--accent-deep);
     }
-    /* Dark values applied via data-theme, which welcome.js sets from the
-       user's saved choice or the system preference (auto). */
-    :root[data-theme="dark"] {
-        --bg: #292824;
-        --page-text: #f2f1ea;
-        --page-text-2: #b7b5a9;
-        --page-text-3: #868478;
-        --logo-nit: #f2f1ea;
-        --logo-cursor: #f2f1ea;
-
-        --surface: var(--orange);
-        --card-text: #241503;
-        --card-text-2: rgba(36, 21, 3, 0.82);
-        --card-text-3: rgba(36, 21, 3, 0.6);
-        --card-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.35), 0 14px 32px -14px rgba(0,0,0,0.6);
-
-        --num-bg: rgba(0, 0, 0, 0.14); --num-text: #241503;
-        --cmd-bg: rgba(0, 0, 0, 0.32); --cmd-code: #ffffff;
-        --copybtn-bg: rgba(255, 255, 255, 0.92); --copybtn-text: #9a5200;
-        --chip-bg: rgba(0, 0, 0, 0.12); --chip-text: rgba(36, 21, 3, 0.82); --chip-soon-text: rgba(36, 21, 3, 0.6);
-        --chip-live-bg: var(--accent); --chip-live-text: var(--on-accent);
-        --chip-live-bg-hover: #a4d63a;
-        --dot-off: rgba(0, 0, 0, 0.2);
-        --done-bg: rgba(0, 0, 0, 0.12); --done-text: #241503;
-    }
-    :root[data-theme="light"] { color-scheme: light; }
-    :root[data-theme="dark"] { color-scheme: dark; }
     * { box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -136,20 +108,9 @@
     .agent.soon:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
     footer { margin-top: 40px; font-size: 12.5px; color: var(--page-text-3); }
     footer a { color: inherit; }
-    .theme-toggle {
-      position: fixed; top: 18px; right: 20px; z-index: 10;
-      border: 0; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600;
-      padding: 7px 13px; border-radius: 100px;
-      background: rgba(0, 0, 0, 0.18); color: var(--page-text);
-      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-      transition: transform 0.15s, background-color 0.15s;
-    }
-    .theme-toggle:hover { background: rgba(0, 0, 0, 0.28); }
-    .theme-toggle:active { transform: scale(0.96); }
   </style>
 </head>
 <body>
-  <button id="themeToggle" class="theme-toggle" title="Switch theme">🌗 Auto</button>
   <main>
     <div class="logo-wrap"><!--LOGO--><div class="mascot-top"><!--MASCOT--></div></div>
     <h1>Two minutes to your first nitpic</h1>

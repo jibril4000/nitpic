@@ -1,28 +1,4 @@
-/** Welcome page: theme switcher, copy buttons, and a live checklist. */
-
-/* ----- theme: auto (system) → light → dark, persisted ----- */
-
-type ThemePref = "auto" | "light" | "dark";
-const THEME_LABELS: Record<ThemePref, string> = { auto: "🌗 Auto", light: "☀️ Light", dark: "🌙 Dark" };
-const themeBtn = document.getElementById("themeToggle") as HTMLButtonElement;
-const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
-let themePref: ThemePref = (localStorage.getItem("nitpicTheme") as ThemePref) || "auto";
-
-function applyTheme(): void {
-  const resolved = themePref === "auto" ? (systemDark.matches ? "dark" : "light") : themePref;
-  document.documentElement.dataset.theme = resolved;
-  themeBtn.textContent = THEME_LABELS[themePref];
-}
-
-themeBtn.addEventListener("click", () => {
-  themePref = themePref === "auto" ? "light" : themePref === "light" ? "dark" : "auto";
-  localStorage.setItem("nitpicTheme", themePref);
-  applyTheme();
-});
-systemDark.addEventListener("change", () => {
-  if (themePref === "auto") applyTheme();
-});
-applyTheme();
+/** Welcome page: copy buttons and a live checklist. */
 
 /* ----- copy buttons ----- */
 
