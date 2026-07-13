@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-91C31C?style=flat-square" alt="Licencia MIT" /></a>
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-muy%20pronto-FF8C00?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" />
+  <a href="https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll"><img src="https://img.shields.io/badge/Chrome%20Web%20Store-disponible-91C31C?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" /></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-91C31C?style=flat-square&logo=anthropic&logoColor=white" alt="Plugin de Claude Code" />
   <a href="https://buymeacoffee.com/jibrilai"><img src="https://img.shields.io/badge/%E2%98%95-inv%C3%ADtame%20un%20caf%C3%A9-FFDD00?style=flat-square" alt="Invítame un café" /></a>
 </p>
@@ -39,7 +39,7 @@ Hecho para diseñadores, desarrolladores y *vibe coders* que revisan su app en e
 
 ## 🚀 Inicio rápido
 
-**1. Instala la extensión de Chrome** — *(enlace a la Web Store muy pronto; mientras tanto: `chrome://extensions` → Modo desarrollador → Cargar descomprimida → `extension/dist`)*
+**1. Instala la extensión de Chrome** — con un clic desde la [Chrome Web Store](https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll)
 
 **2. Instala el plugin de Claude Code** — pega esto en cualquier sesión:
 

@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-91C31C?style=flat-square" alt="MIT ライセンス" /></a>
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-%E8%BF%91%E6%97%A5%E5%85%AC%E9%96%8B-FF8C00?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" />
+  <a href="https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll"><img src="https://img.shields.io/badge/Chrome%20Web%20Store-%E5%85%AC%E9%96%8B%E4%B8%AD-91C31C?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" /></a>
   <img src="https://img.shields.io/badge/Claude%20Code-%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3-91C31C?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Code プラグイン" />
   <a href="https://buymeacoffee.com/jibrilai"><img src="https://img.shields.io/badge/%E2%98%95-%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC%E3%82%92%E3%81%94%E3%81%A1%E3%81%9D%E3%81%86%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84-FFDD00?style=flat-square" alt="コーヒーをごちそうする" /></a>
 </p>
@@ -39,7 +39,7 @@
 
 ## 🚀 クイックスタート
 
-**1. Chrome 拡張機能をインストール** — *（Web ストアのリンクは近日公開。それまでは `chrome://extensions` → デベロッパーモード → 「パッケージ化されていない拡張機能を読み込む」 → `extension/dist`）*
+**1. Chrome 拡張機能をインストール** — [Chrome ウェブストア](https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll)からワンクリックで
 
 **2. Claude Code プラグインをインストール** — 任意のセッションに貼り付け:
 

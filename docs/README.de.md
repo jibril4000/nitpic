@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="../LICENSE"><img src="https://img.shields.io/badge/Lizenz-MIT-91C31C?style=flat-square" alt="MIT-Lizenz" /></a>
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-bald-FF8C00?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" />
+  <a href="https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll"><img src="https://img.shields.io/badge/Chrome%20Web%20Store-verf%C3%BCgbar-91C31C?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" /></a>
   <img src="https://img.shields.io/badge/Claude%20Code-Plugin-91C31C?style=flat-square&logo=anthropic&logoColor=white" alt="Claude-Code-Plugin" />
   <a href="https://buymeacoffee.com/jibrilai"><img src="https://img.shields.io/badge/%E2%98%95-Kauf%20mir%20einen%20Kaffee-FFDD00?style=flat-square" alt="Kauf mir einen Kaffee" /></a>
 </p>
@@ -39,7 +39,7 @@ Gebaut für Designer, Entwicklerinnen und Vibe-Coder, die ihre App im Browser pr
 
 ## 🚀 Schnellstart
 
-**1. Chrome-Erweiterung installieren** — *(Web-Store-Link folgt; bis dahin: `chrome://extensions` → Entwicklermodus → Entpackte Erweiterung laden → `extension/dist`)*
+**1. Chrome-Erweiterung installieren** — mit einem Klick aus dem [Chrome Web Store](https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll)
 
 **2. Claude-Code-Plugin installieren** — in eine beliebige Session einfügen:
 

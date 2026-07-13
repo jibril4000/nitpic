@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-91C31C?style=flat-square" alt="MIT 许可证" /></a>
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-%E5%8D%B3%E5%B0%86%E4%B8%8A%E7%BA%BF-FF8C00?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" />
+  <a href="https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll"><img src="https://img.shields.io/badge/Chrome%20Web%20Store-%E5%B7%B2%E4%B8%8A%E7%BA%BF-91C31C?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" /></a>
   <img src="https://img.shields.io/badge/Claude%20Code-%E6%8F%92%E4%BB%B6-91C31C?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Code 插件" />
   <a href="https://buymeacoffee.com/jibrilai"><img src="https://img.shields.io/badge/%E2%98%95-%E8%AF%B7%E6%88%91%E5%96%9D%E6%9D%AF%E5%92%96%E5%95%A1-FFDD00?style=flat-square" alt="请我喝杯咖啡" /></a>
 </p>
@@ -39,7 +39,7 @@
 
 ## 🚀 快速开始
 
-**1. 安装 Chrome 扩展** — *（Web Store 链接即将上线；在此之前：`chrome://extensions` → 开发者模式 → 加载已解压的扩展程序 → `extension/dist`）*
+**1. 安装 Chrome 扩展** — 从 [Chrome Web Store](https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll) 一键安装
 
 **2. 安装 Claude Code 插件** — 在任意会话中粘贴：
 

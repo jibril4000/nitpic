@@ -174,7 +174,8 @@ async function activationReport(args: string[], cwd: string): Promise<string> {
       lines.push(
         `pairing needed: the user should click the nitpic toolbar icon in Chrome — the floating panel` +
           ` pairs automatically from the clipboard (token ${res.token} is${copied ? "" : " NOT"} on it; ` +
-          `manual entry in the panel also works).`,
+          `manual entry in the panel also works). No nitpic icon in Chrome? Install the extension first:` +
+          ` https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll`,
       );
     } else {
       lines.push(

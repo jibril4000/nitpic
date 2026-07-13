@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-91C31C?style=flat-square" alt="MIT License" /></a>
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-coming%20soon-FF8C00?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" />
+  <a href="https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll"><img src="https://img.shields.io/badge/Chrome%20Web%20Store-available-91C31C?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" /></a>
   <img src="https://img.shields.io/badge/Claude%20Code-plugin-91C31C?style=flat-square&logo=anthropic&logoColor=white" alt="Claude Code plugin" />
   <img src="https://img.shields.io/badge/tests-23%20passing-91C31C?style=flat-square" alt="Tests" />
   <img src="https://img.shields.io/badge/PRs-welcome-FF8C00?style=flat-square" alt="PRs welcome" />
@@ -46,7 +46,7 @@ Built for designers, developers, and vibe coders who review their app in the bro
 
 ## 🚀 Quick start
 
-**1. Install the Chrome extension** — *(Web Store link coming soon; until then: `chrome://extensions` → Developer mode → Load unpacked → `extension/dist`)*
+**1. Install the Chrome extension** — one click from the [Chrome Web Store](https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll)
 
 **2. Install the Claude Code plugin** — paste into any Claude Code session:
 

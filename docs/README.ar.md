@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-91C31C?style=flat-square" alt="رخصة MIT" /></a>
-  <img src="https://img.shields.io/badge/Chrome%20Web%20Store-%D9%82%D8%B1%D9%8A%D8%A8%D9%8B%D8%A7-FF8C00?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" />
+  <a href="https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll"><img src="https://img.shields.io/badge/Chrome%20Web%20Store-%D9%85%D8%AA%D8%A7%D8%AD-91C31C?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome Web Store" /></a>
   <img src="https://img.shields.io/badge/Claude%20Code-%D8%A5%D8%B6%D8%A7%D9%81%D8%A9-91C31C?style=flat-square&logo=anthropic&logoColor=white" alt="إضافة Claude Code" />
   <a href="https://buymeacoffee.com/jibrilai"><img src="https://img.shields.io/badge/%E2%98%95-%D8%A7%D8%AF%D8%B9%D9%85%D9%86%D9%8A%20%D8%A8%D9%82%D9%87%D9%88%D8%A9-FFDD00?style=flat-square" alt="ادعمني بقهوة" /></a>
 </p>
@@ -41,7 +41,7 @@
 
 ## 🚀 البداية السريعة
 
-**١. ثبّت إضافة Chrome** — *(رابط المتجر قريبًا؛ حتى ذلك الحين: `chrome://extensions` ← وضع المطوّر ← تحميل إضافة غير مضغوطة ← `extension/dist`)*
+**١. ثبّت إضافة Chrome** — بنقرة واحدة من [متجر Chrome الإلكتروني](https://chromewebstore.google.com/detail/eamfkghlemjhefpdlmpjkjadacgcanll)
 
 **٢. ثبّت إضافة Claude Code** — الصق في أي جلسة:
 
