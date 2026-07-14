@@ -1,6 +1,6 @@
 {
   "name": "nitpic",
   "description": "Browser feedback → this Claude Code session. Type /nitpic, then click and comment on anything in Chrome.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": { "name": "jibril" }
 }
